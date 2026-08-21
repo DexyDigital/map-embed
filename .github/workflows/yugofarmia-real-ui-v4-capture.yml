@@ -26,55 +26,19 @@ jobs:
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Patch capture navigation after exact row screenshots
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-          import re
-          path = Path('yugofarmia-real-ui-v4/capture.mjs')
-          text = path.read_text()
-          pattern = re.compile(
-              r"\s*const cucumber = page\.getByRole\('button', \{name: 'Cucumbers', exact: true\}\);\s*"
-              r"await moveClick\(page, cucumber, 250, 900\);"
-          )
-          replacement = """
-          await productInput.fill('Cucumbers');
-          await sleep(450);
-          const cucumber = page.locator('button[role="option"]').filter({hasText: /^Cucumbers$/i}).first();
-          await cucumber.click({force: true});
-          await sleep(900);"""
-          text, count = pattern.subn(replacement, text, count=1)
-          if count != 1:
-              raise SystemExit(f'Expected one cucumber selection snippet, replaced {count}')
-          text = text.replace(
-              "const exact = page.getByRole('button', {name: new RegExp(`^${country}$`, 'i')});",
-              "const exact = page.locator('button[role=\"option\"]').filter({hasText: new RegExp(country, 'i')});",
-          )
-          text = text.replace(
-              "const serbia = page.getByRole('button', {name: /Serbia/i, exact: true});\n  await moveClick(page, serbia, 200, 700);",
-              "const serbia = page.locator('button[role=\"option\"]').filter({hasText: /Serbia/i}).first();\n  await serbia.click({force: true});\n  await sleep(700);",
-          )
-          text = text.replace(
-              "const latest = page.getByRole('button', {name: /Latest available/i});",
-              "const latest = page.locator('button[role=\"option\"], button').filter({hasText: /Latest available/i}).first();",
-          )
-          path.write_text(text)
-          PY
-
-      - name: Capture live Yugofarmia interactions and exact UI rows
-        run: node yugofarmia-real-ui-v4/capture.mjs
+      - name: Capture live Yugofarmia flow and exact UI rows
+        run: node yugofarmia-real-ui-v4/capture-v2.mjs
 
       - name: Inventory capture
         if: always()
         run: |
-          find yugofarmia-real-ui-v4/out -maxdepth 2 -type f -printf '%P\t%k KB\n' | sort || true
+          find yugofarmia-real-ui-v4/out-v2 -maxdepth 2 -type f -printf '%P\t%k KB\n' | sort || true
 
       - name: Upload capture
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: yugofarmia-real-ui-v4-capture
-          path: yugofarmia-real-ui-v4/out
+          path: yugofarmia-real-ui-v4/out-v2
           if-no-files-found: error
           retention-days: 2
