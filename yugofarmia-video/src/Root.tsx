@@ -1,9 +1,9 @@
 import React from 'react';
 import {Composition} from 'remotion';
-import {YugofarmiaFilm, type YugofarmiaFilmProps} from './YugofarmiaFilm';
+import {YugofarmiaFilm} from './YugofarmiaFilm';
 
 export const RemotionRoot: React.FC = () => (
-  <Composition<YugofarmiaFilmProps>
+  <Composition
     id="YugofarmiaFilm"
     component={YugofarmiaFilm}
     durationInFrames={1175}
