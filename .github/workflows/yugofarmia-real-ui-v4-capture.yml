@@ -31,18 +31,23 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
+          import re
           path = Path('yugofarmia-real-ui-v4/capture.mjs')
           text = path.read_text()
-          old = """  const cucumber = page.getByRole('button', {name: 'Cucumbers', exact: true});
-          await moveClick(page, cucumber, 250, 900);"""
-          new = """  await productInput.fill('Cucumbers');
+          pattern = re.compile(
+              r"\s*const cucumber = page\.getByRole\('button', \{name: 'Cucumbers', exact: true\}\);\s*"
+              r"await moveClick\(page, cucumber, 250, 900\);"
+          )
+          replacement = """
+          await productInput.fill('Cucumbers');
           await sleep(450);
           const cucumber = page.getByRole('button', {name: 'Cucumbers', exact: true});
           await cucumber.click();
           await sleep(900);"""
-          if old not in text:
-              raise SystemExit('Expected cucumber selection snippet was not found')
-          path.write_text(text.replace(old, new))
+          text, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f'Expected one cucumber selection snippet, replaced {count}')
+          path.write_text(text)
           PY
 
       - name: Capture live Yugofarmia interactions and exact UI rows
