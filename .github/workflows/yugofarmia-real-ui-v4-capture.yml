@@ -1,0 +1,44 @@
+name: Capture Yugofarmia real UI v4
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Capture live Yugofarmia interactions and exact UI rows
+        run: node yugofarmia-real-ui-v4/capture.mjs
+
+      - name: Inventory capture
+        if: always()
+        run: |
+          find yugofarmia-real-ui-v4/out -maxdepth 2 -type f -printf '%P\t%k KB\n' | sort || true
+
+      - name: Upload capture
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: yugofarmia-real-ui-v4-capture
+          path: yugofarmia-real-ui-v4/out
+          if-no-files-found: error
+          retention-days: 2
