@@ -1,0 +1,21 @@
+{
+  "name": "yugofarmia-reference-direction-video",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "render": "remotion render src/index.ts YugofarmiaFilm out/yugofarmia-reference-direction.mp4 --codec=h264 --crf=18 --pixel-format=yuv420p",
+    "still": "remotion still src/index.ts YugofarmiaFilm out/yugofarmia-linkedin-cover.png --frame=55"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.506",
+    "@remotion/media": "4.0.506",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.506"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "typescript": "5.8.3"
+  }
+}
