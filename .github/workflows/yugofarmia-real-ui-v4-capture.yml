@@ -41,12 +41,20 @@ jobs:
           replacement = """
           await productInput.fill('Cucumbers');
           await sleep(450);
-          const cucumber = page.getByRole('button', {name: 'Cucumbers', exact: true});
+          const cucumber = page.getByRole('option', {name: 'Cucumbers', exact: true});
           await cucumber.click();
           await sleep(900);"""
           text, count = pattern.subn(replacement, text, count=1)
           if count != 1:
               raise SystemExit(f'Expected one cucumber selection snippet, replaced {count}')
+          text = text.replace(
+              "page.getByRole('button', {name: new RegExp(`^${country}$`, 'i')})",
+              "page.getByRole('option', {name: new RegExp(`^${country}$`, 'i')})",
+          )
+          text = text.replace(
+              "page.getByRole('button', {name: /Serbia/i, exact: true})",
+              "page.getByRole('option', {name: /Serbia/i, exact: true})",
+          )
           path.write_text(text)
           PY
 
