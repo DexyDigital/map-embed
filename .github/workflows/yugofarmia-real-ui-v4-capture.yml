@@ -1,4 +1,4 @@
-name: Capture Yugofarmia real UI v4
+name: Render Yugofarmia real UI v4
 
 on:
   pull_request:
@@ -10,9 +10,10 @@ permissions:
   contents: read
 
 jobs:
-  capture:
+  render:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 45
+
     steps:
       - uses: actions/checkout@v4
 
@@ -20,28 +21,115 @@ jobs:
         with:
           node-version: 22
 
-      - name: Install Playwright
+      - name: Install system tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg zip
+
+      - name: Restore Remotion source
+        shell: bash
+        run: |
+          mkdir -p yugofarmia-real-ui-v4/video
+          base64 --decode yugofarmia-real-ui-v4/video-source.tar.gz.b64 \
+            > yugofarmia-real-ui-v4/video-source.tar.gz
+          tar -xzf yugofarmia-real-ui-v4/video-source.tar.gz \
+            -C yugofarmia-real-ui-v4/video
+          find yugofarmia-real-ui-v4/video -maxdepth 3 -type f -print | sort
+
+      - name: Install browser capture dependencies
         run: |
           npm init -y
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Capture live Yugofarmia flow and exact UI rows
-        run: node yugofarmia-real-ui-v4/capture-v2.mjs
-
-      - name: Capture real currency and unit interactions
-        run: node yugofarmia-real-ui-v4/capture-controls.mjs
-
-      - name: Inventory capture
-        if: always()
+      - name: Capture the real Yugofarmia interaction flow
         run: |
-          find yugofarmia-real-ui-v4/out-v2 -maxdepth 2 -type f -printf '%P\t%k KB\n' | sort || true
+          node yugofarmia-real-ui-v4/capture-v2.mjs
+          node yugofarmia-real-ui-v4/capture-controls.mjs
+          find yugofarmia-real-ui-v4/out-v2 -maxdepth 2 -type f -printf '%P\t%k KB\n' | sort
 
-      - name: Upload capture
-        if: always()
+      - name: Prepare live assets
+        shell: bash
+        run: |
+          mkdir -p yugofarmia-real-ui-v4/video/public/real \
+            yugofarmia-real-ui-v4/video/out
+          cp yugofarmia-real-ui-v4/out-v2/*.png \
+            yugofarmia-real-ui-v4/video/public/real/
+          cp yugofarmia-real-ui-v4/out-v2/real-homepage-product-click.webm \
+            yugofarmia-real-ui-v4/video/public/real/
+          ffmpeg -hide_banner -loglevel error -y \
+            -i yugofarmia-real-ui-v4/out-v2/real-homepage-product-click.webm \
+            -an -c:v libx264 -preset medium -crf 17 -r 30 \
+            -pix_fmt yuv420p -movflags +faststart \
+            yugofarmia-real-ui-v4/video/public/real/homepage.mp4
+          ls -lh yugofarmia-real-ui-v4/video/public/real
+
+      - name: Install Remotion project
+        working-directory: yugofarmia-real-ui-v4/video
+        run: npm install
+
+      - name: Generate original soundtrack and click audio
+        working-directory: yugofarmia-real-ui-v4/video
+        run: |
+          python scripts/audio.py
+          ls -lh public/soundtrack.wav public/click.wav
+
+      - name: Type-check
+        working-directory: yugofarmia-real-ui-v4/video
+        run: npx tsc --noEmit
+
+      - name: Render MP4 and cover
+        working-directory: yugofarmia-real-ui-v4/video
+        shell: bash
+        run: |
+          CHROME_PATH="$(find "$HOME/.cache/ms-playwright" -type f \( -name headless_shell -o -name chrome-headless-shell \) -perm -111 | head -n 1)"
+          echo "Using browser: $CHROME_PATH"
+          test -x "$CHROME_PATH"
+          npx remotion render src/index.ts YugofarmiaRealUI \
+            out/yugofarmia-real-ui-v4.mp4 \
+            --codec=h264 \
+            --audio-codec=aac \
+            --crf=18 \
+            --pixel-format=yuv420p \
+            --concurrency=4 \
+            --browser-executable="$CHROME_PATH" \
+            --overwrite
+          npx remotion still src/index.ts YugofarmiaRealUI \
+            out/yugofarmia-real-ui-v4-cover.png \
+            --frame=102 \
+            --browser-executable="$CHROME_PATH" \
+            --overwrite
+
+      - name: Validate and package
+        working-directory: yugofarmia-real-ui-v4/video
+        shell: bash
+        run: |
+          ffprobe -v error \
+            -show_entries format=duration,size:stream=codec_name,codec_type,width,height,r_frame_rate \
+            -of json out/yugofarmia-real-ui-v4.mp4 \
+            > out/video-metadata.json
+          ffmpeg -hide_banner -loglevel error -y \
+            -i out/yugofarmia-real-ui-v4.mp4 \
+            -vf "fps=1/2.5,scale=480:-2,tile=5x2:padding=8:margin=8:color=white" \
+            -frames:v 1 out/yugofarmia-real-ui-v4-contact-sheet.jpg
+          ffmpeg -hide_banner -i out/yugofarmia-real-ui-v4.mp4 \
+            -af volumedetect -f null - 2> out/audio-qc.txt
+          zip -r out/yugofarmia-real-ui-v4-remotion-source.zip \
+            src scripts public package.json tsconfig.json README.md
+          ls -lh out
+          cat out/video-metadata.json
+          tail -n 20 out/audio-qc.txt
+
+      - name: Upload finished film
         uses: actions/upload-artifact@v4
         with:
-          name: yugofarmia-real-ui-v4-capture
-          path: yugofarmia-real-ui-v4/out-v2
+          name: yugofarmia-real-ui-v4-film
+          path: |
+            yugofarmia-real-ui-v4/video/out/yugofarmia-real-ui-v4.mp4
+            yugofarmia-real-ui-v4/video/out/yugofarmia-real-ui-v4-cover.png
+            yugofarmia-real-ui-v4/video/out/yugofarmia-real-ui-v4-contact-sheet.jpg
+            yugofarmia-real-ui-v4/video/out/yugofarmia-real-ui-v4-remotion-source.zip
+            yugofarmia-real-ui-v4/video/out/video-metadata.json
+            yugofarmia-real-ui-v4/video/out/audio-qc.txt
           if-no-files-found: error
           retention-days: 2
