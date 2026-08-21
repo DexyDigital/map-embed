@@ -1,0 +1,78 @@
+name: Yugofarmia reference analysis
+
+on:
+  push:
+    branches:
+      - tmp/yugofarmia-video-reference-20260820
+    paths-ignore:
+      - 'reference-analysis/**'
+
+permissions:
+  contents: write
+
+jobs:
+  analyze:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p reference-analysis/frames
+          curl --fail --location --retry 5 --retry-all-errors \
+            --user-agent 'Mozilla/5.0' \
+            'https://video.wixstatic.com/video/548553_822d8f5569d44df68aa7fd5234ec8aa1/1080p/mp4/file.mp4' \
+            --output reference-analysis/reference.mp4
+          test -s reference-analysis/reference.mp4
+
+      - name: Inspect and extract visual samples
+        shell: bash
+        run: |
+          set -euo pipefail
+          ffprobe -v error -show_format -show_streams -of json \
+            reference-analysis/reference.mp4 > reference-analysis/metadata.json
+
+          duration="$(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 reference-analysis/reference.mp4)"
+          interval="$(awk -v d="$duration" 'BEGIN {i=d/12; if (i<0.25) i=0.25; printf "%.4f", i}')"
+          printf '{"duration_seconds":%s,"sample_interval_seconds":%s}\n' "$duration" "$interval" \
+            > reference-analysis/summary.json
+
+          ffmpeg -hide_banner -loglevel error -y \
+            -i reference-analysis/reference.mp4 \
+            -vf "fps=1/${interval},scale=480:-2:force_original_aspect_ratio=decrease" \
+            -frames:v 12 -q:v 2 reference-analysis/frames/frame-%02d.jpg
+
+          ffmpeg -hide_banner -loglevel error -y \
+            -i reference-analysis/reference.mp4 \
+            -vf "fps=1/${interval},scale=480:-2:force_original_aspect_ratio=decrease,tile=4x3:padding=10:margin=10:color=white" \
+            -frames:v 1 -q:v 2 reference-analysis/contact-sheet.jpg
+
+          ffmpeg -hide_banner -loglevel error -y \
+            -i reference-analysis/reference.mp4 \
+            -vf "scale=360:-2:force_original_aspect_ratio=decrease,fps=12" \
+            -an -c:v libx264 -preset veryfast -crf 32 -movflags +faststart \
+            reference-analysis/preview.mp4
+
+          if ffprobe -v error -select_streams a:0 -show_entries stream=index -of csv=p=0 reference-analysis/reference.mp4 | grep -q .; then
+            ffmpeg -hide_banner -loglevel error -y \
+              -i reference-analysis/reference.mp4 \
+              -filter_complex "aformat=channel_layouts=mono,showwavespic=s=1200x240:colors=black" \
+              -frames:v 1 reference-analysis/audio-waveform.png
+          fi
+
+      - name: Commit analysis assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -f reference-analysis/reference.mp4
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- reference-analysis
+          git commit -m 'chore: add Yugofarmia reference analysis'
+          git push origin HEAD:tmp/yugofarmia-video-reference-20260820
