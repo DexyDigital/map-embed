@@ -1,6 +1,9 @@
 name: Yugofarmia short-video live capture
 
 on:
+  push:
+    branches:
+      - tmp/yugofarmia-short-video-20260821
   pull_request:
     branches:
       - main
