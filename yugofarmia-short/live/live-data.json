@@ -1,0 +1,278 @@
+{
+  "capturedAt": "2026-08-21T14:13:01.695Z",
+  "site": "https://yugofarmia.com",
+  "homepage": {
+    "title": "Agricultural prices · Yuga Farma",
+    "bodyText": "Skip to main content\nPrices\nProducts\nEN\nFind the right agricultural price\n\nChoose a product, country, and period to explore available official price references.\n\nChoose a price view\nProduct\nCountry\nSelect a product\nPeriod\nSelect a country\nShow results\nSelect a product\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic.",
+    "logoSrc": "https://yugofarmia.com/_next/static/media/yf-wordmark.2_du7di29rvt-.png"
+  },
+  "products": [
+    {
+      "slug": "potatoes",
+      "label": "Potatoes",
+      "title": "Potato prices",
+      "url": "https://yugofarmia.com/en/products/potatoes",
+      "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAll products\n/\nVegetables\n/\nRoot and tuber vegetables\nPotatoes\nProduct ID: product-potato\n\nCompare potato prices by country, market stage, and reporting period.\n\nProduct subtypes\nProcessing potatoes\nSeed potatoes\nTable / ware potatoes\nReported characteristics\nOrganic status\nProcessing state\nProduction method\nQuality grade\nCertification / scheme\nDeclared origin\nPackaging\nRegistered or reported variety\nPotatoes · General image\nPrices available\n🇷🇸\nSerbia\n34 observations\n\nSORS CN30 retail prices\n\nJan 1, 2024\n→\nJul 21, 2026\n\nExplore prices\n→\nExplore prices\n🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.34 / 1 kg\n→\nExplore prices\n🇸🇮\nSlovenia\n2 observations\n\nSURS SiStat\n\nJan 1, 2013\n→\nDec 31, 2025\n\nExplore prices\n→\nExplore prices\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic.",
+      "image": null,
+      "coverage": [
+        {
+          "country": "Serbia",
+          "observations": "34 observations",
+          "source": "SORS CN30 retail prices",
+          "periodStart": "Jan 1, 2024",
+          "periodEnd": "Jul 21, 2026",
+          "latestMedian": "",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-rs&stage=green_market_retail&stage=store_retail&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇷🇸\nSerbia\n34 observations\n\nSORS CN30 retail prices\n\nJan 1, 2024\n→\nJul 21, 2026\n\nExplore prices\n→\nExplore prices"
+        },
+        {
+          "country": "Croatia",
+          "observations": "1 observation",
+          "source": "DZS Agricultural Prices",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 0.34 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.34 / 1 kg\n→\nExplore prices"
+        },
+        {
+          "country": "Slovenia",
+          "observations": "2 observations",
+          "source": "SURS SiStat",
+          "periodStart": "Jan 1, 2013",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇸🇮\nSlovenia\n2 observations\n\nSURS SiStat\n\nJan 1, 2013\n→\nDec 31, 2025\n\nExplore prices\n→\nExplore prices"
+        }
+      ],
+      "resultPages": [
+        {
+          "country": "Serbia",
+          "source": "SORS CN30 retail prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-rs&stage=green_market_retail&stage=store_retail&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nPotatoes\nCountry\nSerbia\nPeriod\n07/15/2026 – 07/21/2026\nShow results\n34 of 34 observations\nMarket stage\nClear all\nGreen-market retailOnly\n17\nStore retailOnly\n17\nRegions\nClear all\nBelgrade RegionOnly\n1\nRegion of VojvodinaOnly\n5\nRegion of Šumadija and Western SerbiaOnly\n6\nRegion of Southern and Eastern SerbiaOnly\n5\nCities\nClear all\nBelgradeOnly\n2\nValjevoOnly\n2\nVranjeOnly\n2\nZaječarOnly\n2\nKragujevacOnly\n2\nKraljevoOnly\n2\nShow more (11)\nPrice type\nClear all\nOfficialOnly\n34\nRSD\nkg\nPrice results\nComparison summary\n\nPotatoes\n·\nSerbia\n·\n07/15/2026 – 07/21/2026\n\nGreen-market retail\n\nNot specified\n\nOfficial\n\n17 observations · City\n\nMedian\nRSD 100.00\nper 1 kg\nRange\nNot specified. Range: RSD 70.00–150.00; Median: RSD 100.00 per 1 kg.\nMinimum\nRSD 70.00\nMaximum\nRSD 150.00\nMedian\nRSD 100.00\nStore retail\n\nNot specified\n\nOfficial\n\n17 observations · City\n\nMedian\nRSD 99.99\nper 1 kg\nRange\nNot specified. Range: RSD 75.00–100.00; Median: RSD 99.99 per 1 kg.\nMinimum\nRSD 75.00\nMaximum\nRSD 100.00\nMedian\nRSD 99.99\nView 34 observations · City\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Croatia",
+          "source": "DZS Agricultural Prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nPotatoes\nCountry\nCroatia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nDirect producerOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\n€ EUR\nkg\nPrice results\nComparison summary\n\nPotatoes\n·\nCroatia\n·\n01/01/2025 – 12/31/2025\n\nDirect producer\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.34\nper 1 kg\nRange\nNot specified. Median: EUR 0.34 per 1 kg.\nMedian\nEUR 0.34\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Slovenia",
+          "source": "SURS SiStat",
+          "href": "https://yugofarmia.com/en/prices?product=product-potato&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nPotatoes\nCountry\nSlovenia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n2 of 2 observations\nMarket stage\nClear all\nFarm purchaseOnly\n2\nProduct subtypes\nEarly potatoesOnly\n1\nMain-crop potatoesOnly\n1\nPrice type\nClear all\nOfficialOnly\n2\n€ EUR\nkg\nPrice results\nComparison summary\n\nPotatoes\n·\nSlovenia\n·\n01/01/2025 – 12/31/2025\n\nFarm purchase\n\nEarly potatoes\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.57\nper 1 kg\nRange\nEarly potatoes. Median: EUR 0.57 per 1 kg.\nMedian\nEUR 0.57\nFarm purchase\n\nMain-crop potatoes\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.41\nper 1 kg\nRange\nMain-crop potatoes. Median: EUR 0.41 per 1 kg.\nMedian\nEUR 0.41\nView 2 observations · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        }
+      ]
+    },
+    {
+      "slug": "tomatoes",
+      "label": "Tomatoes",
+      "title": "Tomatoes · Yuga Farma",
+      "url": "https://yugofarmia.com/en/products/tomatoes",
+      "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAll products\n/\nVegetables\n/\nFruiting vegetables\nTomatoes\nProduct ID: product-tomato\n\nProduct subtypes\nCherry / cocktail tomatoes\nOblong / plum tomatoes\nRibbed tomatoes\nRound tomatoes\nReported characteristics\nCertification / scheme\nOrganic status\nDeclared origin\nPackaging\nProcessing state\nProduction method\nRegistered or reported variety\nTomatoes · General image\nPrices available\n🇷🇸\nSerbia\n17 observations\n\nSORS CN30 retail prices\n\nMay 15, 2024\n→\nJul 21, 2026\n\nLatest median\nRSD 139.99 / 1 kg\n→\nExplore prices\n🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 1.28 / 1 kg\n→\nExplore prices\n🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 2.65 / 1 kg\n→\nExplore prices\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic.",
+      "image": null,
+      "coverage": [
+        {
+          "country": "Serbia",
+          "observations": "17 observations",
+          "source": "SORS CN30 retail prices",
+          "periodStart": "May 15, 2024",
+          "periodEnd": "Jul 21, 2026",
+          "latestMedian": "RSD 139.99 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-rs&stage=not_reported&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇷🇸\nSerbia\n17 observations\n\nSORS CN30 retail prices\n\nMay 15, 2024\n→\nJul 21, 2026\n\nLatest median\nRSD 139.99 / 1 kg\n→\nExplore prices"
+        },
+        {
+          "country": "Croatia",
+          "observations": "1 observation",
+          "source": "DZS Agricultural Prices",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 1.28 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 1.28 / 1 kg\n→\nExplore prices"
+        },
+        {
+          "country": "Slovenia",
+          "observations": "1 observation",
+          "source": "SURS SiStat",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 2.65 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 2.65 / 1 kg\n→\nExplore prices"
+        }
+      ],
+      "resultPages": [
+        {
+          "country": "Serbia",
+          "source": "SORS CN30 retail prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-rs&stage=not_reported&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nTomatoes\nCountry\nSerbia\nPeriod\n07/15/2026 – 07/21/2026\nShow results\n17 of 17 observations\nMarket stage\nClear all\nNot reportedOnly\n17\nRegions\nClear all\nBelgrade RegionOnly\n1\nRegion of VojvodinaOnly\n5\nRegion of Šumadija and Western SerbiaOnly\n6\nRegion of Southern and Eastern SerbiaOnly\n5\nCities\nClear all\nBelgradeOnly\n1\nValjevoOnly\n1\nVranjeOnly\n1\nZaječarOnly\n1\nKragujevacOnly\n1\nKraljevoOnly\n1\nShow more (11)\nPrice type\nClear all\nOfficialOnly\n17\nRSD\nkg\nPrice results\nComparison summary\n\nTomatoes\n·\nSerbia\n·\n07/15/2026 – 07/21/2026\n\nNot reported\n\nNot specified\n\nOfficial\n\n17 observations · City\n\nMedian\nRSD 139.99\nper 1 kg\nRange\nNot specified. Range: RSD 80.00–200.00; Median: RSD 139.99 per 1 kg.\nMinimum\nRSD 80.00\nMaximum\nRSD 200.00\nMedian\nRSD 139.99\nView 17 observations · City\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Croatia",
+          "source": "DZS Agricultural Prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nTomatoes\nCountry\nCroatia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nDirect producerOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\n€ EUR\nkg\nPrice results\nComparison summary\n\nTomatoes\n·\nCroatia\n·\n01/01/2025 – 12/31/2025\n\nDirect producer\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 1.28\nper 1 kg\nRange\nNot specified. Median: EUR 1.28 per 1 kg.\nMedian\nEUR 1.28\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Slovenia",
+          "source": "SURS SiStat",
+          "href": "https://yugofarmia.com/en/prices?product=product-tomato&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nTomatoes\nCountry\nSlovenia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nFarm purchaseOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\n€ EUR\nkg\nPrice results\nComparison summary\n\nTomatoes\n·\nSlovenia\n·\n01/01/2025 – 12/31/2025\n\nFarm purchase\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 2.65\nper 1 kg\nRange\nNot specified. Median: EUR 2.65 per 1 kg.\nMedian\nEUR 2.65\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        }
+      ]
+    },
+    {
+      "slug": "cucumbers",
+      "label": "Cucumbers",
+      "title": "Cucumbers · Yuga Farma",
+      "url": "https://yugofarmia.com/en/products/cucumbers",
+      "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAll products\n/\nVegetables\n/\nCucurbit vegetables\nCucumbers\nProduct ID: product-cucumber\n\nProduct subtypes\nLong cucumbers\nSlicing cucumbers\nReported characteristics\nCertification / scheme\nOrganic status\nDeclared origin\nPackaging\nProcessing state\nProduction method\nRegistered or reported variety\nCucumbers · General image\nPrices available\n🇷🇸\nSerbia\n17 observations\n\nSORS CN30 retail prices\n\nMay 1, 2024\n→\nJul 21, 2026\n\nLatest median\nRSD 100.00 / 1 kg\n→\nExplore prices\n🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.67 / 1 kg\n→\nExplore prices\n🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.79 / 1 kg\n→\nExplore prices\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic.",
+      "image": null,
+      "coverage": [
+        {
+          "country": "Serbia",
+          "observations": "17 observations",
+          "source": "SORS CN30 retail prices",
+          "periodStart": "May 1, 2024",
+          "periodEnd": "Jul 21, 2026",
+          "latestMedian": "RSD 100.00 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-rs&stage=not_reported&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇷🇸\nSerbia\n17 observations\n\nSORS CN30 retail prices\n\nMay 1, 2024\n→\nJul 21, 2026\n\nLatest median\nRSD 100.00 / 1 kg\n→\nExplore prices"
+        },
+        {
+          "country": "Croatia",
+          "observations": "1 observation",
+          "source": "DZS Agricultural Prices",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 0.67 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.67 / 1 kg\n→\nExplore prices"
+        },
+        {
+          "country": "Slovenia",
+          "observations": "1 observation",
+          "source": "SURS SiStat",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 0.79 / 1 kg",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "rawText": "🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.79 / 1 kg\n→\nExplore prices"
+        }
+      ],
+      "resultPages": [
+        {
+          "country": "Serbia",
+          "source": "SORS CN30 retail prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-rs&stage=not_reported&dataset=dataset-rs-sors-cn30&periodMode=custom&periodStart=2026-07-15&periodEnd=2026-07-21&periodGranularity=week&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nCucumbers\nCountry\nSerbia\nPeriod\n07/15/2026 – 07/21/2026\nShow results\n17 of 17 observations\nMarket stage\nClear all\nNot reportedOnly\n17\nRegions\nClear all\nBelgrade RegionOnly\n1\nRegion of VojvodinaOnly\n5\nRegion of Šumadija and Western SerbiaOnly\n6\nRegion of Southern and Eastern SerbiaOnly\n5\nCities\nClear all\nBelgradeOnly\n1\nValjevoOnly\n1\nVranjeOnly\n1\nZaječarOnly\n1\nKragujevacOnly\n1\nKraljevoOnly\n1\nShow more (11)\nPrice type\nClear all\nOfficialOnly\n17\nRSD\nkg\nPrice results\nComparison summary\n\nCucumbers\n·\nSerbia\n·\n07/15/2026 – 07/21/2026\n\nNot reported\n\nNot specified\n\nOfficial\n\n17 observations · City\n\nMedian\nRSD 100.00\nper 1 kg\nRange\nNot specified. Range: RSD 60.00–150.00; Median: RSD 100.00 per 1 kg.\nMinimum\nRSD 60.00\nMaximum\nRSD 150.00\nMedian\nRSD 100.00\nView 17 observations · City\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Croatia",
+          "source": "DZS Agricultural Prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nCucumbers\nCountry\nCroatia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nDirect producerOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\n€ EUR\nkg\nPrice results\nComparison summary\n\nCucumbers\n·\nCroatia\n·\n01/01/2025 – 12/31/2025\n\nDirect producer\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.67\nper 1 kg\nRange\nNot specified. Median: EUR 0.67 per 1 kg.\nMedian\nEUR 0.67\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Slovenia",
+          "source": "SURS SiStat",
+          "href": "https://yugofarmia.com/en/prices?product=product-cucumber&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=kg&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nCucumbers\nCountry\nSlovenia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nFarm purchaseOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\n€ EUR\nkg\nPrice results\nComparison summary\n\nCucumbers\n·\nSlovenia\n·\n01/01/2025 – 12/31/2025\n\nFarm purchase\n\nSlicing cucumbers\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.79\nper 1 kg\nRange\nSlicing cucumbers. Median: EUR 0.79 per 1 kg.\nMedian\nEUR 0.79\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        }
+      ]
+    },
+    {
+      "slug": "raw-cow-milk",
+      "label": "Raw cow milk",
+      "title": "Raw cow milk · Yuga Farma",
+      "url": "https://yugofarmia.com/en/products/raw-cow-milk",
+      "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAll products\n/\nDairy\n/\nFluid milk\nRaw cow milk\nProduct ID: product-raw-cows-milk\n\nReported characteristics\nAnimal source\nDry matter content\nFat content\nHeat treatment\nPackaging presentation\nPhysical form\nProtein content\nRipening class\nRaw cow milk · General image\nPrices available\n🇷🇸\nSerbia\n1 observation\n\nSORS CN30 retail prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nRSD 52.68 / 1 l\n→\nExplore prices\n🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices — Agricultural Prices — annual producer prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.51 / 1 l\n→\nExplore prices\n🇭🇷\nCroatia\n3 observations\n\nDZS Agricultural Prices — Agricultural purchase and sale prices — annual\n\nJan 1, 2023\n→\nDec 31, 2025\n\nExplore prices\n→\nExplore prices\n🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.50 / 1 l\n→\nExplore prices\n‹\n›\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic.",
+      "image": null,
+      "coverage": [
+        {
+          "country": "Serbia",
+          "observations": "1 observation",
+          "source": "SORS CN30 retail prices",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "RSD 52.68 / 1 l",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-rs&stage=farm_purchase&dataset=dataset-rs-sors-0302010302&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "rawText": "🇷🇸\nSerbia\n1 observation\n\nSORS CN30 retail prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nRSD 52.68 / 1 l\n→\nExplore prices"
+        },
+        {
+          "country": "Croatia",
+          "observations": "1 observation",
+          "source": "DZS Agricultural Prices — Agricultural Prices — annual producer prices",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 0.51 / 1 l",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "rawText": "🇭🇷\nCroatia\n1 observation\n\nDZS Agricultural Prices — Agricultural Prices — annual producer prices\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.51 / 1 l\n→\nExplore prices"
+        },
+        {
+          "country": "Croatia",
+          "observations": "3 observations",
+          "source": "DZS Agricultural Prices — Agricultural purchase and sale prices — annual",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-hr&stage=direct_producer&stage=farm_purchase&stage=not_reported&dataset=dataset-hr-dzs-polj-annual-purchase-sale&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "rawText": "🇭🇷\nCroatia\n3 observations\n\nDZS Agricultural Prices — Agricultural purchase and sale prices — annual\n\nJan 1, 2023\n→\nDec 31, 2025\n\nExplore prices\n→\nExplore prices"
+        },
+        {
+          "country": "Slovenia",
+          "observations": "1 observation",
+          "source": "SURS SiStat",
+          "periodStart": "Jan 1, 2023",
+          "periodEnd": "Dec 31, 2025",
+          "latestMedian": "EUR 0.50 / 1 l",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-si&stage=farm_purchase&dataset=dataset-si-surs-1505000s&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "rawText": "🇸🇮\nSlovenia\n1 observation\n\nSURS SiStat\n\nJan 1, 2023\n→\nDec 31, 2025\n\nLatest median\nEUR 0.50 / 1 l\n→\nExplore prices"
+        }
+      ],
+      "resultPages": [
+        {
+          "country": "Serbia",
+          "source": "SORS CN30 retail prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-rs&stage=farm_purchase&dataset=dataset-rs-sors-0302010302&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nRaw cow milk\nCountry\nSerbia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n1 of 1 observations\nMarket stage\nClear all\nFarm purchaseOnly\n1\nPrice type\nClear all\nOfficialOnly\n1\nRSD\nl\nPrice results\nComparison summary\n\nRaw cow milk\n·\nSerbia\n·\n01/01/2025 – 12/31/2025\n\nFarm purchase\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nRSD 52.68\nper 1 l\nRange\nNot specified. Median: RSD 52.68 per 1 l.\nMedian\nRSD 52.68\nView 1 observation · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Croatia",
+          "source": "DZS Agricultural Prices — Agricultural Prices — annual producer prices",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-hr&stage=direct_producer&dataset=dataset-hr-dzs-agricultural-output-prices-annual&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nRaw cow milk\nCountry\nCroatia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n4 of 4 observations\nMarket stage\nClear all\nFarm purchaseOnly\n1\nDirect producerOnly\n2\nNot reportedOnly\n1\nDatasets\nDZS Agricultural Prices\nAgricultural Prices — annual producer pricesOnly\n1\nAgricultural purchase and sale prices — annualOnly\n3\nPrice type\nClear all\nOfficialOnly\n4\n€ EUR\nl\nPrice results\nComparison summary\n\nRaw cow milk\n·\nCroatia\n·\n01/01/2025 – 12/31/2025\n\nDirect producer\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.51\nper 1 l\nRange\nNot specified. Median: EUR 0.51 per 1 l.\nMedian\nEUR 0.51\nFarm purchase\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.50\nper 1 l\nRange\nNot specified. Median: EUR 0.50 per 1 l.\nMedian\nEUR 0.50\nNot reported\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.51\nper 1 l\nRange\nNot specified. Median: EUR 0.51 per 1 l.\nMedian\nEUR 0.51\nView 4 observations · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        },
+        {
+          "country": "Croatia",
+          "source": "DZS Agricultural Prices — Agricultural purchase and sale prices — annual",
+          "href": "https://yugofarmia.com/en/prices?product=product-raw-cows-milk&country=country-hr&stage=direct_producer&stage=farm_purchase&stage=not_reported&dataset=dataset-hr-dzs-polj-annual-purchase-sale&periodMode=custom&periodStart=2025-01-01&periodEnd=2025-12-31&periodGranularity=year&currency=original&unit=l&priceType=direct_official",
+          "prices": [],
+          "bodyText": "Skip to main content\nPrices\nProducts\nEN\nAgricultural prices\nChoose a price view\nProduct\nRaw cow milk\nCountry\nCroatia\nPeriod\n01/01/2025 – 12/31/2025\nShow results\n4 of 4 observations\nMarket stage\nClear all\nFarm purchaseOnly\n1\nDirect producerOnly\n2\nNot reportedOnly\n1\nDatasets\nDZS Agricultural Prices\nAgricultural Prices — annual producer pricesOnly\n1\nAgricultural purchase and sale prices — annualOnly\n3\nPrice type\nClear all\nOfficialOnly\n4\n€ EUR\nl\nPrice results\nComparison summary\n\nRaw cow milk\n·\nCroatia\n·\n01/01/2025 – 12/31/2025\n\nDirect producer\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.51\nper 1 l\nRange\nNot specified. Median: EUR 0.51 per 1 l.\nMedian\nEUR 0.51\nFarm purchase\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.50\nper 1 l\nRange\nNot specified. Median: EUR 0.50 per 1 l.\nMedian\nEUR 0.50\nNot reported\n\nNot specified\n\nOfficial\n\n1 observation · Country\n\nMedian\nEUR 0.51\nper 1 l\nRange\nNot specified. Median: EUR 0.51 per 1 l.\nMedian\nEUR 0.51\nView 4 observations · Country\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+        }
+      ]
+    }
+  ],
+  "sources": {
+    "title": "Sources & Currency",
+    "url": "https://yugofarmia.com/en/sources",
+    "bodyText": "Skip to main content\nPrices\nProducts\nEN\nSources & Currency\n\nOfficial price sources and optional currency display.\n\nSources\nCroatia — DZS\n\nOfficial price data\nPublished reuse terms\n\nAttribution: Croatian Bureau of Statistics. Yugo Farmia calculations or modifications are identified.\n\nSerbia — SORS\n\nOfficial price data\nPublished reuse terms\n\nAttribution: Statistical Office of the Republic of Serbia (SORS). Yugo Farmia calculations or modifications are identified.\n\nSlovenia — SURS\n\nOfficial price data\nPublished reuse terms\n\nAttribution: Statistical Office of the Republic of Slovenia (SURS). Yugo Farmia calculations or modifications are identified.\n\nCurrency\n\nEvery source price is displayed in its original reported currency and unit. Users may optionally select another display currency for easier comparison. When conversion is available, Yugo Farmia calculates the displayed equivalent from the applicable stored CurrencyAPI rate and its recorded date. The converted amount is a derived display value; the original value remains the source value.\n\nPublic agricultural prices, price references, and source evidence for Eastern Europe.\n\nExplore\n\nPrices\nProducts\n\nInformation\n\nSources & Currency\nContact\nPrivacy & Cookies\n\nBuilt with ❤️ by Dejan Djokovic."
+  }
+}
