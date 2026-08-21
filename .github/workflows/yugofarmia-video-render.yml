@@ -1,4 +1,4 @@
-name: Render Yugofarmia short LinkedIn film
+name: Render Yugofarmia guided website flow
 
 on:
   pull_request:
@@ -48,6 +48,26 @@ jobs:
           python scripts/audio.py
           ls -lh public/soundtrack.wav
 
+      - name: Apply guided website-flow composition
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import base64
+          import gzip
+
+          payload = ''.join(
+              Path(f'scripts/flow-part-{index}.b64').read_text().strip()
+              for index in range(1, 5)
+          )
+          Path('src/YugofarmiaShort.tsx').write_bytes(
+              gzip.decompress(base64.b64decode(payload))
+          )
+          Path('src/Root.tsx').write_bytes(
+              gzip.decompress(base64.b64decode(Path('scripts/root-flow.b64').read_text().strip()))
+          )
+          print('Applied guided website-flow source')
+          PY
+
       - name: Type-check
         run: npx tsc --noEmit
 
@@ -56,7 +76,7 @@ jobs:
           CHROME_PATH="$(find "$HOME/.cache/ms-playwright" -type f \( -name headless_shell -o -name chrome-headless-shell \) -perm -111 | head -n 1)"
           echo "Using browser: $CHROME_PATH"
           test -x "$CHROME_PATH"
-          npx remotion render src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin.mp4 \
+          npx remotion render src/index.ts YugofarmiaShort out/yugofarmia-guided-website-flow.mp4 \
             --codec=h264 \
             --audio-codec=aac \
             --crf=18 \
@@ -64,8 +84,8 @@ jobs:
             --concurrency=4 \
             --browser-executable="$CHROME_PATH" \
             --overwrite
-          npx remotion still src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin-cover.png \
-            --frame=42 \
+          npx remotion still src/index.ts YugofarmiaShort out/yugofarmia-guided-website-flow-cover.png \
+            --frame=112 \
             --browser-executable="$CHROME_PATH" \
             --overwrite
 
@@ -73,26 +93,26 @@ jobs:
         run: |
           ffprobe -v error \
             -show_entries format=duration,size:stream=codec_name,codec_type,width,height,r_frame_rate \
-            -of json out/yugofarmia-short-linkedin.mp4 > out/video-metadata.json
+            -of json out/yugofarmia-guided-website-flow.mp4 > out/video-metadata.json
           ffmpeg -hide_banner -loglevel error -y \
-            -i out/yugofarmia-short-linkedin.mp4 \
-            -vf "fps=1/2.1,scale=480:-2,tile=5x2:padding=8:margin=8:color=white" \
-            -frames:v 1 out/yugofarmia-short-contact-sheet.jpg
-          ffmpeg -hide_banner -i out/yugofarmia-short-linkedin.mp4 \
+            -i out/yugofarmia-guided-website-flow.mp4 \
+            -vf "fps=1/2.5,scale=480:-2,tile=5x2:padding=8:margin=8:color=white" \
+            -frames:v 1 out/yugofarmia-guided-website-flow-contact-sheet.jpg
+          ffmpeg -hide_banner -i out/yugofarmia-guided-website-flow.mp4 \
             -af volumedetect -f null - 2> out/audio-qc.txt
-          zip -r out/yugofarmia-short-remotion-source.zip \
+          zip -r out/yugofarmia-guided-flow-remotion-source.zip \
             src scripts public package.json tsconfig.json README.md
           ls -lh out
 
       - name: Upload finished film
         uses: actions/upload-artifact@v4
         with:
-          name: yugofarmia-short-linkedin-film
+          name: yugofarmia-guided-website-flow-film
           path: |
-            yugofarmia-short-video/out/yugofarmia-short-linkedin.mp4
-            yugofarmia-short-video/out/yugofarmia-short-linkedin-cover.png
-            yugofarmia-short-video/out/yugofarmia-short-contact-sheet.jpg
-            yugofarmia-short-video/out/yugofarmia-short-remotion-source.zip
+            yugofarmia-short-video/out/yugofarmia-guided-website-flow.mp4
+            yugofarmia-short-video/out/yugofarmia-guided-website-flow-cover.png
+            yugofarmia-short-video/out/yugofarmia-guided-website-flow-contact-sheet.jpg
+            yugofarmia-short-video/out/yugofarmia-guided-flow-remotion-source.zip
             yugofarmia-short-video/out/video-metadata.json
             yugofarmia-short-video/out/audio-qc.txt
           if-no-files-found: error
