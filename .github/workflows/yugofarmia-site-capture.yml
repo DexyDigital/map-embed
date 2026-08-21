@@ -1,0 +1,133 @@
+name: Yugofarmia live site capture
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y
+          npm install playwright
+          npx playwright install --with-deps chromium
+
+      - name: Capture Yugofarmia
+        shell: bash
+        run: |
+          cat > capture.mjs <<'EOF'
+          import fs from 'node:fs/promises';
+          import {chromium} from 'playwright';
+
+          const out = 'site-capture';
+          await fs.mkdir(out, {recursive: true});
+          const browser = await chromium.launch({headless: true});
+          const context = await browser.newContext({
+            viewport: {width: 1440, height: 900},
+            deviceScaleFactor: 1,
+            colorScheme: 'light',
+          });
+          const page = await context.newPage();
+          page.setDefaultTimeout(15000);
+
+          const capture = async (name, fullPage = false) => {
+            await page.screenshot({path: `${out}/${name}.png`, fullPage});
+          };
+
+          const writeState = async (name) => {
+            const state = await page.evaluate(() => ({
+              title: document.title,
+              url: location.href,
+              bodyText: document.body.innerText,
+              controls: [...document.querySelectorAll('select, button, input, a')].map((el, index) => ({
+                index,
+                tag: el.tagName,
+                text: (el.innerText || el.getAttribute('aria-label') || el.getAttribute('placeholder') || '').trim(),
+                value: 'value' in el ? el.value : null,
+                href: el instanceof HTMLAnchorElement ? el.href : null,
+                html: el.outerHTML.slice(0, 1000),
+              })),
+            }));
+            await fs.writeFile(`${out}/${name}.json`, JSON.stringify(state, null, 2));
+          };
+
+          const selectText = async (index, preferred) => {
+            const select = page.locator('select').nth(index);
+            if (!(await select.count())) return false;
+            const options = await select.locator('option').evaluateAll((nodes) => nodes.map((node, i) => ({
+              index: i,
+              text: (node.textContent || '').trim(),
+              value: node.value,
+              disabled: node.disabled,
+            })));
+            const match = options.find((o) => !o.disabled && preferred.some((p) => o.text.toLowerCase().includes(p)))
+              || options.find((o) => !o.disabled && o.value && o.index > 0);
+            if (!match) return false;
+            await select.selectOption({index: match.index});
+            return true;
+          };
+
+          await page.goto('https://yugofarmia.com/en/prices', {waitUntil: 'domcontentloaded'});
+          await page.waitForTimeout(2500);
+          await capture('prices-initial');
+          await capture('prices-initial-full', true);
+          await writeState('prices-initial');
+
+          const selectCount = await page.locator('select').count();
+          if (selectCount >= 1) await selectText(0, ['potato']);
+          if (selectCount >= 2) await selectText(1, ['serbia']);
+          if (selectCount >= 3) await selectText(2, ['latest', 'available']);
+          await page.waitForTimeout(700);
+          await capture('prices-selected');
+
+          const resultsButton = page.getByRole('button', {name: /show results|view results|prikaži|rezult/i}).first();
+          if (await resultsButton.count()) {
+            await resultsButton.click();
+            await page.waitForTimeout(2500);
+          }
+          await capture('prices-results');
+          await capture('prices-results-full', true);
+          await writeState('prices-results');
+
+          if (selectCount >= 2) {
+            await selectText(1, ['croatia']);
+            if (await resultsButton.count()) {
+              await resultsButton.click().catch(() => {});
+              await page.waitForTimeout(1800);
+            }
+            await capture('prices-croatia');
+          }
+
+          await page.goto('https://yugofarmia.com/en/products', {waitUntil: 'domcontentloaded'});
+          await page.waitForTimeout(2200);
+          await capture('products');
+          await capture('products-full', true);
+          await writeState('products');
+
+          await context.close();
+          await browser.close();
+          EOF
+          node capture.mjs
+
+      - name: Upload capture
+        uses: actions/upload-artifact@v4
+        with:
+          name: yugofarmia-live-site-capture
+          path: site-capture
+          if-no-files-found: error
+          retention-days: 1
