@@ -43,7 +43,7 @@ jobs:
             colorScheme: 'light',
           });
           const page = await context.newPage();
-          page.setDefaultTimeout(15000);
+          page.setDefaultTimeout(60000);
 
           const capture = async (name, fullPage = false) => {
             await page.screenshot({path: `${out}/${name}.png`, fullPage});
@@ -82,42 +82,52 @@ jobs:
             return true;
           };
 
-          await page.goto('https://yugofarmia.com/en/prices', {waitUntil: 'domcontentloaded'});
-          await page.waitForTimeout(2500);
-          await capture('prices-initial');
-          await capture('prices-initial-full', true);
-          await writeState('prices-initial');
+          try {
+            await page.goto('https://yugofarmia.com/en/prices', {waitUntil: 'domcontentloaded', timeout: 60000});
+            await page.waitForTimeout(3000);
+            await capture('prices-initial');
+            await capture('prices-initial-full', true);
+            await writeState('prices-initial');
 
-          const selectCount = await page.locator('select').count();
-          if (selectCount >= 1) await selectText(0, ['potato']);
-          if (selectCount >= 2) await selectText(1, ['serbia']);
-          if (selectCount >= 3) await selectText(2, ['latest', 'available']);
-          await page.waitForTimeout(700);
-          await capture('prices-selected');
+            const selectCount = await page.locator('select').count();
+            if (selectCount >= 1) await selectText(0, ['potato']);
+            if (selectCount >= 2) await selectText(1, ['serbia']);
+            if (selectCount >= 3) await selectText(2, ['latest', 'available']);
+            await page.waitForTimeout(1000);
+            await capture('prices-selected');
 
-          const resultsButton = page.getByRole('button', {name: /show results|view results|prikaži|rezult/i}).first();
-          if (await resultsButton.count()) {
-            await resultsButton.click();
-            await page.waitForTimeout(2500);
-          }
-          await capture('prices-results');
-          await capture('prices-results-full', true);
-          await writeState('prices-results');
-
-          if (selectCount >= 2) {
-            await selectText(1, ['croatia']);
+            const resultsButton = page.getByRole('button', {name: /show results|view results|prikaži|rezult/i}).first();
             if (await resultsButton.count()) {
               await resultsButton.click().catch(() => {});
-              await page.waitForTimeout(1800);
+              await page.waitForTimeout(3000);
             }
-            await capture('prices-croatia');
+            await capture('prices-results');
+            await capture('prices-results-full', true);
+            await writeState('prices-results');
+
+            if (selectCount >= 2) {
+              await selectText(1, ['croatia']);
+              if (await resultsButton.count()) {
+                await resultsButton.click().catch(() => {});
+                await page.waitForTimeout(2200);
+              }
+              await capture('prices-croatia');
+            }
+          } catch (error) {
+            await fs.writeFile(`${out}/prices-error.txt`, String(error));
+            await capture('prices-error').catch(() => {});
           }
 
-          await page.goto('https://yugofarmia.com/en/products', {waitUntil: 'domcontentloaded'});
-          await page.waitForTimeout(2200);
-          await capture('products');
-          await capture('products-full', true);
-          await writeState('products');
+          try {
+            await page.goto('https://yugofarmia.com/en/products', {waitUntil: 'domcontentloaded', timeout: 45000});
+            await page.waitForTimeout(2500);
+            await capture('products');
+            await capture('products-full', true);
+            await writeState('products');
+          } catch (error) {
+            await fs.writeFile(`${out}/products-error.txt`, String(error));
+            await capture('products-error').catch(() => {});
+          }
 
           await context.close();
           await browser.close();
@@ -125,6 +135,7 @@ jobs:
           node capture.mjs
 
       - name: Upload capture
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: yugofarmia-live-site-capture
