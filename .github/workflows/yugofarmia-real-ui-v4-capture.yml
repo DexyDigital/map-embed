@@ -26,6 +26,25 @@ jobs:
           npm install playwright@1.55.0
           npx playwright install --with-deps chromium
 
+      - name: Patch capture navigation after exact row screenshots
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('yugofarmia-real-ui-v4/capture.mjs')
+          text = path.read_text()
+          old = """  const cucumber = page.getByRole('button', {name: 'Cucumbers', exact: true});
+          await moveClick(page, cucumber, 250, 900);"""
+          new = """  await productInput.fill('Cucumbers');
+          await sleep(450);
+          const cucumber = page.getByRole('button', {name: 'Cucumbers', exact: true});
+          await cucumber.click();
+          await sleep(900);"""
+          if old not in text:
+              raise SystemExit('Expected cucumber selection snippet was not found')
+          path.write_text(text.replace(old, new))
+          PY
+
       - name: Capture live Yugofarmia interactions and exact UI rows
         run: node yugofarmia-real-ui-v4/capture.mjs
 
