@@ -29,6 +29,9 @@ jobs:
       - name: Capture live Yugofarmia flow and exact UI rows
         run: node yugofarmia-real-ui-v4/capture-v2.mjs
 
+      - name: Capture real currency and unit interactions
+        run: node yugofarmia-real-ui-v4/capture-controls.mjs
+
       - name: Inventory capture
         if: always()
         run: |
