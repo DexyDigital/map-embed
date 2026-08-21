@@ -1,4 +1,4 @@
-name: Render Yugofarmia cinematic film
+name: Render Yugofarmia short LinkedIn film
 
 on:
   pull_request:
@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 35
     defaults:
       run:
-        working-directory: yugofarmia-video
+        working-directory: yugofarmia-short-video
 
     steps:
       - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: yugofarmia-video/package.json
+          cache-dependency-path: yugofarmia-short-video/package.json
 
       - name: Install system tools
         run: |
@@ -37,26 +37,26 @@ jobs:
           npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Capture the live Yugofarmia experience
+      - name: Capture canonical live assets
         run: |
-          mkdir -p public/capture out
-          node scripts/capture.mjs
-          ls -lh public/capture
+          mkdir -p public/live out
+          node scripts/capture-assets.mjs
+          ls -lh public/live
 
-      - name: Generate original soundtrack and interaction audio
+      - name: Generate original soundtrack
         run: |
           python scripts/audio.py
-          ls -lh public/*.wav
+          ls -lh public/soundtrack.wav
 
       - name: Type-check
         run: npx tsc --noEmit
 
-      - name: Render MP4 and cover
+      - name: Render MP4 and LinkedIn cover
         run: |
           CHROME_PATH="$(find "$HOME/.cache/ms-playwright" -type f \( -name headless_shell -o -name chrome-headless-shell \) -perm -111 | head -n 1)"
           echo "Using browser: $CHROME_PATH"
           test -x "$CHROME_PATH"
-          npx remotion render src/index.ts YugofarmiaFilm out/yugofarmia-reference-direction.mp4 \
+          npx remotion render src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin.mp4 \
             --codec=h264 \
             --audio-codec=aac \
             --crf=18 \
@@ -64,32 +64,36 @@ jobs:
             --concurrency=4 \
             --browser-executable="$CHROME_PATH" \
             --overwrite
-          npx remotion still src/index.ts YugofarmiaFilm out/yugofarmia-linkedin-cover.png \
-            --frame=55 \
+          npx remotion still src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin-cover.png \
+            --frame=42 \
             --browser-executable="$CHROME_PATH" \
             --overwrite
 
       - name: Validate and package
         run: |
-          ffprobe -v error -show_entries format=duration,size:stream=codec_name,codec_type,width,height,r_frame_rate \
-            -of json out/yugofarmia-reference-direction.mp4 > out/video-metadata.json
+          ffprobe -v error \
+            -show_entries format=duration,size:stream=codec_name,codec_type,width,height,r_frame_rate \
+            -of json out/yugofarmia-short-linkedin.mp4 > out/video-metadata.json
           ffmpeg -hide_banner -loglevel error -y \
-            -i out/yugofarmia-reference-direction.mp4 \
-            -vf "fps=1/4.7,scale=480:-2,tile=5x2:padding=8:margin=8:color=white" \
-            -frames:v 1 out/yugofarmia-contact-sheet.jpg
-          zip -r out/yugofarmia-remotion-source.zip src scripts public package.json tsconfig.json README.md \
-            -x 'public/capture/*-full.png'
+            -i out/yugofarmia-short-linkedin.mp4 \
+            -vf "fps=1/2.1,scale=480:-2,tile=5x2:padding=8:margin=8:color=white" \
+            -frames:v 1 out/yugofarmia-short-contact-sheet.jpg
+          ffmpeg -hide_banner -i out/yugofarmia-short-linkedin.mp4 \
+            -af volumedetect -f null - 2> out/audio-qc.txt
+          zip -r out/yugofarmia-short-remotion-source.zip \
+            src scripts public package.json tsconfig.json README.md
           ls -lh out
 
       - name: Upload finished film
         uses: actions/upload-artifact@v4
         with:
-          name: yugofarmia-reference-direction-film
+          name: yugofarmia-short-linkedin-film
           path: |
-            yugofarmia-video/out/yugofarmia-reference-direction.mp4
-            yugofarmia-video/out/yugofarmia-linkedin-cover.png
-            yugofarmia-video/out/yugofarmia-contact-sheet.jpg
-            yugofarmia-video/out/yugofarmia-remotion-source.zip
-            yugofarmia-video/out/video-metadata.json
+            yugofarmia-short-video/out/yugofarmia-short-linkedin.mp4
+            yugofarmia-short-video/out/yugofarmia-short-linkedin-cover.png
+            yugofarmia-short-video/out/yugofarmia-short-contact-sheet.jpg
+            yugofarmia-short-video/out/yugofarmia-short-remotion-source.zip
+            yugofarmia-short-video/out/video-metadata.json
+            yugofarmia-short-video/out/audio-qc.txt
           if-no-files-found: error
           retention-days: 2
