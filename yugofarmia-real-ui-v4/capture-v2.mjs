@@ -161,7 +161,12 @@ try {
   }
 
   const latest = page.locator('input[type="radio"][value="latest_available"]').first();
-  await latest.check({force: true});
+  await latest.evaluate((element) => {
+    const input = element;
+    input.click();
+    input.dispatchEvent(new Event('input', {bubbles: true}));
+    input.dispatchEvent(new Event('change', {bubbles: true}));
+  });
   await sleep(650);
   await snap(page, '07-period-selected');
   await dump(page, '07-period-selected');
