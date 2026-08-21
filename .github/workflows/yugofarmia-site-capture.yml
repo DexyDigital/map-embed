@@ -1,4 +1,4 @@
-name: Yugofarmia live site capture
+name: Yugofarmia short-video live capture
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ permissions:
 jobs:
   capture:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 18
     steps:
       - uses: actions/checkout@v4
 
@@ -21,134 +21,18 @@ jobs:
           node-version: 22
 
       - name: Install Playwright
-        shell: bash
         run: |
-          npm init -y
-          npm install playwright
+          npm install --no-save playwright@1.55.0
           npx playwright install --with-deps chromium
 
-      - name: Capture Yugofarmia
-        shell: bash
-        run: |
-          cat > capture.mjs <<'EOF'
-          import fs from 'node:fs/promises';
-          import {chromium} from 'playwright';
+      - name: Capture current Yugofarmia prices, sources, product images, and logo
+        run: node yugofarmia-short/capture.mjs
 
-          const out = 'site-capture';
-          await fs.mkdir(out, {recursive: true});
-          const browser = await chromium.launch({headless: true});
-          const context = await browser.newContext({
-            viewport: {width: 1440, height: 900},
-            deviceScaleFactor: 1,
-            colorScheme: 'light',
-          });
-          const page = await context.newPage();
-          page.setDefaultTimeout(60000);
-
-          const capture = async (name, fullPage = false) => {
-            await page.screenshot({path: `${out}/${name}.png`, fullPage});
-          };
-
-          const writeState = async (name) => {
-            const state = await page.evaluate(() => ({
-              title: document.title,
-              url: location.href,
-              bodyText: document.body.innerText,
-              controls: [...document.querySelectorAll('select, button, input, a')].map((el, index) => ({
-                index,
-                tag: el.tagName,
-                role: el.getAttribute('role'),
-                text: (el.innerText || el.getAttribute('aria-label') || el.getAttribute('placeholder') || '').trim(),
-                value: 'value' in el ? el.value : null,
-                href: el instanceof HTMLAnchorElement ? el.href : null,
-                expanded: el.getAttribute('aria-expanded'),
-                html: el.outerHTML.slice(0, 1200),
-              })),
-            }));
-            await fs.writeFile(`${out}/${name}.json`, JSON.stringify(state, null, 2));
-          };
-
-          const clickVisible = async (locator) => {
-            const target = locator.first();
-            if (!(await target.count())) return false;
-            await target.scrollIntoViewIfNeeded().catch(() => {});
-            await target.click();
-            await page.waitForTimeout(600);
-            return true;
-          };
-
-          try {
-            await page.goto('https://yugofarmia.com/en/prices', {waitUntil: 'domcontentloaded', timeout: 60000});
-            await page.waitForTimeout(3000);
-            await capture('01-prices-initial');
-            await writeState('01-prices-initial');
-
-            const productInput = page.locator('input[placeholder="Product"]').first();
-            await clickVisible(productInput);
-            await capture('02-product-open');
-            await clickVisible(page.getByRole('button', {name: 'Potatoes', exact: true}));
-            await capture('03-product-selected');
-
-            const countryInput = page.locator('input[placeholder="Country"]').first();
-            await clickVisible(countryInput);
-            await capture('04-country-open');
-            await clickVisible(page.getByRole('button', {name: /Serbia/i, exact: true}));
-            await capture('05-country-selected');
-
-            const periodInput = page.locator('input[placeholder="Select period"]').first();
-            await clickVisible(periodInput);
-            await capture('06-period-open');
-            const latest = page.getByRole('button', {name: /Latest available/i, exact: true});
-            if (!(await clickVisible(latest))) {
-              const periodButtons = page.locator('button').filter({hasText: /2026|2025|Latest/i});
-              await clickVisible(periodButtons);
-            }
-            await capture('07-ready-to-search');
-
-            await clickVisible(page.getByRole('button', {name: /Show results/i, exact: true}));
-            await page.waitForTimeout(3500);
-            await capture('08-prices-results');
-            await capture('08-prices-results-full', true);
-            await writeState('08-prices-results');
-
-            const sourceLinks = page.getByRole('link', {name: /source|evidence|official/i});
-            if (await sourceLinks.count()) {
-              await sourceLinks.first().hover().catch(() => {});
-              await capture('09-source-evidence');
-            }
-          } catch (error) {
-            await fs.writeFile(`${out}/prices-error.txt`, String(error));
-            await writeState('prices-error-state').catch(() => {});
-            await capture('prices-error').catch(() => {});
-          }
-
-          try {
-            await page.goto('https://yugofarmia.com/en/products', {waitUntil: 'domcontentloaded', timeout: 45000});
-            await page.waitForTimeout(2500);
-            await capture('10-products');
-            await capture('10-products-full', true);
-            await writeState('10-products');
-
-            await page.goto('https://yugofarmia.com/en/products/potatoes', {waitUntil: 'domcontentloaded', timeout: 45000});
-            await page.waitForTimeout(2500);
-            await capture('11-potatoes-detail');
-            await capture('11-potatoes-detail-full', true);
-            await writeState('11-potatoes-detail');
-          } catch (error) {
-            await fs.writeFile(`${out}/products-error.txt`, String(error));
-            await capture('products-error').catch(() => {});
-          }
-
-          await context.close();
-          await browser.close();
-          EOF
-          node capture.mjs
-
-      - name: Upload capture
+      - name: Upload live capture
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: yugofarmia-live-site-capture
-          path: site-capture
+          name: yugofarmia-short-live-capture
+          path: yugofarmia-short/out
           if-no-files-found: error
-          retention-days: 1
+          retention-days: 2
