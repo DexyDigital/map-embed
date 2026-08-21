@@ -1,9 +1,9 @@
 name: Yugofarmia reference analysis
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - tmp/yugofarmia-video-reference-20260820
   workflow_dispatch:
 
 permissions:
@@ -11,16 +11,11 @@ permissions:
 
 jobs:
   analyze:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install FFmpeg
-        shell: bash
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg
 
       - name: Download reference
         shell: bash
