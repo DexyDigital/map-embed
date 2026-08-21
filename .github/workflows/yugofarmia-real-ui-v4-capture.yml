@@ -41,19 +41,23 @@ jobs:
           replacement = """
           await productInput.fill('Cucumbers');
           await sleep(450);
-          const cucumber = page.getByRole('option', {name: 'Cucumbers', exact: true});
-          await cucumber.click();
+          const cucumber = page.locator('button[role="option"]').filter({hasText: /^Cucumbers$/i}).first();
+          await cucumber.click({force: true});
           await sleep(900);"""
           text, count = pattern.subn(replacement, text, count=1)
           if count != 1:
               raise SystemExit(f'Expected one cucumber selection snippet, replaced {count}')
           text = text.replace(
-              "page.getByRole('button', {name: new RegExp(`^${country}$`, 'i')})",
-              "page.getByRole('option', {name: new RegExp(`^${country}$`, 'i')})",
+              "const exact = page.getByRole('button', {name: new RegExp(`^${country}$`, 'i')});",
+              "const exact = page.locator('button[role=\"option\"]').filter({hasText: new RegExp(`^${country}$`, 'i')});",
           )
           text = text.replace(
-              "page.getByRole('button', {name: /Serbia/i, exact: true})",
-              "page.getByRole('option', {name: /Serbia/i, exact: true})",
+              "const serbia = page.getByRole('button', {name: /Serbia/i, exact: true});\n  await moveClick(page, serbia, 200, 700);",
+              "const serbia = page.locator('button[role=\"option\"]').filter({hasText: /^Serbia$/i}).first();\n  await serbia.click({force: true});\n  await sleep(700);",
+          )
+          text = text.replace(
+              "const latest = page.getByRole('button', {name: /Latest available/i});",
+              "const latest = page.locator('button[role=\"option\"], button').filter({hasText: /Latest available/i}).first();",
           )
           path.write_text(text)
           PY
