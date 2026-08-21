@@ -1,0 +1,23 @@
+{
+  "name": "yugofarmia-short-linkedin-video",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "studio": "remotion studio src/index.ts --no-open",
+    "typecheck": "tsc --noEmit",
+    "render": "remotion render src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin.mp4 --codec=h264 --audio-codec=aac --crf=18 --pixel-format=yuv420p --overwrite",
+    "still": "remotion still src/index.ts YugofarmiaShort out/yugofarmia-short-linkedin-cover.png --frame=42 --overwrite"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.506",
+    "@remotion/media": "4.0.506",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "remotion": "4.0.506"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.10",
+    "@types/react-dom": "19.1.7",
+    "typescript": "5.8.3"
+  }
+}
