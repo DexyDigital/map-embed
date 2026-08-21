@@ -1,24 +1,20 @@
 name: Yugofarmia reference analysis
 
 on:
-  push:
+  pull_request:
     branches:
-      - tmp/yugofarmia-video-reference-20260820
-    paths-ignore:
-      - 'reference-analysis/**'
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   analyze:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Download reference
         shell: bash
@@ -45,7 +41,7 @@ jobs:
 
           ffmpeg -hide_banner -loglevel error -y \
             -i reference-analysis/reference.mp4 \
-            -vf "fps=1/${interval},scale=480:-2:force_original_aspect_ratio=decrease" \
+            -vf "fps=1/${interval},scale=720:-2:force_original_aspect_ratio=decrease" \
             -frames:v 12 -q:v 2 reference-analysis/frames/frame-%02d.jpg
 
           ffmpeg -hide_banner -loglevel error -y \
@@ -55,8 +51,8 @@ jobs:
 
           ffmpeg -hide_banner -loglevel error -y \
             -i reference-analysis/reference.mp4 \
-            -vf "scale=360:-2:force_original_aspect_ratio=decrease,fps=12" \
-            -an -c:v libx264 -preset veryfast -crf 32 -movflags +faststart \
+            -vf "scale=540:-2:force_original_aspect_ratio=decrease,fps=15" \
+            -an -c:v libx264 -preset veryfast -crf 28 -movflags +faststart \
             reference-analysis/preview.mp4
 
           if ffprobe -v error -select_streams a:0 -show_entries stream=index -of csv=p=0 reference-analysis/reference.mp4 | grep -q .; then
@@ -66,13 +62,12 @@ jobs:
               -frames:v 1 reference-analysis/audio-waveform.png
           fi
 
-      - name: Commit analysis assets
-        shell: bash
-        run: |
-          set -euo pipefail
           rm -f reference-analysis/reference.mp4
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -- reference-analysis
-          git commit -m 'chore: add Yugofarmia reference analysis'
-          git push origin HEAD:tmp/yugofarmia-video-reference-20260820
+
+      - name: Upload analysis
+        uses: actions/upload-artifact@v4
+        with:
+          name: yugofarmia-reference-analysis
+          path: reference-analysis
+          if-no-files-found: error
+          retention-days: 1
