@@ -49,11 +49,11 @@ jobs:
               raise SystemExit(f'Expected one cucumber selection snippet, replaced {count}')
           text = text.replace(
               "const exact = page.getByRole('button', {name: new RegExp(`^${country}$`, 'i')});",
-              "const exact = page.locator('button[role=\"option\"]').filter({hasText: new RegExp(`^${country}$`, 'i')});",
+              "const exact = page.locator('button[role=\"option\"]').filter({hasText: new RegExp(country, 'i')});",
           )
           text = text.replace(
               "const serbia = page.getByRole('button', {name: /Serbia/i, exact: true});\n  await moveClick(page, serbia, 200, 700);",
-              "const serbia = page.locator('button[role=\"option\"]').filter({hasText: /^Serbia$/i}).first();\n  await serbia.click({force: true});\n  await sleep(700);",
+              "const serbia = page.locator('button[role=\"option\"]').filter({hasText: /Serbia/i}).first();\n  await serbia.click({force: true});\n  await sleep(700);",
           )
           text = text.replace(
               "const latest = page.getByRole('button', {name: /Latest available/i});",
